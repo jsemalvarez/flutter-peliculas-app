@@ -7,8 +7,8 @@ class MovieSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 250,
-      color: Colors.red,
+      height: 260,
+      // color: Colors.red,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -18,6 +18,9 @@ class MovieSlider extends StatelessWidget {
               "Populares",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
+          ),
+          const SizedBox(
+            height: 5,
           ),
           Expanded(
             child: ListView.builder(
@@ -40,10 +43,32 @@ class _Movie extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
-      width: 100,
-      color: Colors.green,
-      margin: const EdgeInsets.all(10),
+      width: 130,
+      height: 190,
+      // color: Colors.green,
+      margin: const EdgeInsets.symmetric(horizontal: 10),
+      child: Column(children: [
+        GestureDetector(
+          onTap: () =>
+              Navigator.pushNamed(context, 'details', arguments: 'movies'),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: const FadeInImage(
+              placeholder: AssetImage('assets/no-image.jpg'),
+              image: NetworkImage('https://via.placeholder.com/300x400'),
+              width: 130,
+              height: 190,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        Text(
+          'Este es un titulo de pelicula muy muy muy largo',
+          maxLines: 2,
+          textAlign: TextAlign.center,
+          overflow: TextOverflow.ellipsis,
+        )
+      ]),
     );
   }
 }
