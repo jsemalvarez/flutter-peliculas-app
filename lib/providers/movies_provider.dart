@@ -21,8 +21,12 @@ class MoviesProvider extends ChangeNotifier {
   }
 
   getOnDisplayMovies() async {
-    var url = Uri.https(_baseUrl, '/3/movie/now_playing',
-        {'api_key': _apikey, 'language:': _language, 'page': '1'});
+    final Map<String, dynamic> queryParameters = {
+      'api_key': _apikey,
+      'language:': _language,
+      'page': '1'
+    };
+    final url = Uri.https(_baseUrl, '/3/movie/now_playing', queryParameters);
 
     // Await the http get response, then decode the json-formatted response.
     final response = await http.get(url);
