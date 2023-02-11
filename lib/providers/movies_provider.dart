@@ -62,7 +62,8 @@ class MoviesProvider extends ChangeNotifier {
     // // Await the http get response, then decode the json-formatted response.
     // final response = await http.get(url);
 
-    _popularPage += 1;
+    _popularPage++;
+    print('Pagina de peliculas populares Nro $_popularPage');
     final jsonData = await _getJsonData('/3/movie/popular', _popularPage);
     final popularRespose = PopularRespose.fromRawJson(jsonData);
 
