@@ -67,6 +67,13 @@ class Cast {
   Department? department;
   String? job;
 
+  get fullProfileImg {
+    if (profilePath != null) {
+      return 'https://image.tmdb.org/t/p/w500$profilePath';
+    }
+    return 'https://i.stack.imgur.com/GNhxO.png';
+  }
+
   factory Cast.fromRawJson(String str) => Cast.fromJson(json.decode(str));
 
   // String toRawJson() => json.encode(toJson());
