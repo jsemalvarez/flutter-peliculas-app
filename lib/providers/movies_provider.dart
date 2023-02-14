@@ -5,6 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:peliculas/models/models.dart';
 import 'package:peliculas/models/popular_response.dart';
 
+import '../models/search_movie_response.dart';
+
 class MoviesProvider extends ChangeNotifier {
   final String _apikey = '7e5de46aba8f155b486beee9b4b4cc4f';
   final String _baseUrl = 'api.themoviedb.org';
@@ -86,5 +88,19 @@ class MoviesProvider extends ChangeNotifier {
     moviesCast[movieId] = creditsRespose.cast;
 
     return creditsRespose.cast;
+  }
+
+  Future<List<Movie>> getMovies(String query) async {
+    final Map<String, dynamic> queryParameters = {
+      'api_key': _apikey,
+      'language:': _language,
+      'query': query
+    };
+    const endpoint = '/3/search/movie';
+    final url = Uri.https(_baseUrl, endpoint, queryParameters);
+
+    final response = await http.get(url);
+    final searchMovieResponse = SearchMovieResponse.fromRawJson(response.body);
+    return searchMovieResponse.results;
   }
 }
