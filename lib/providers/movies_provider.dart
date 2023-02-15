@@ -90,7 +90,7 @@ class MoviesProvider extends ChangeNotifier {
     return creditsRespose.cast;
   }
 
-  Future<List<Movie>> getMovies(String query) async {
+  Future<List<Movie>> getMoviesBySearch(String query) async {
     final Map<String, dynamic> queryParameters = {
       'api_key': _apikey,
       'language:': _language,
