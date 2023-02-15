@@ -80,6 +80,10 @@ class _MovieItem extends StatelessWidget {
         fit: BoxFit.contain,
       ),
       title: Text(movie.title),
+      subtitle: Text(movie.originalTitle),
+      onTap: () {
+        Navigator.pushNamed(context, 'details', arguments: movie);
+      },
     );
   }
 }
